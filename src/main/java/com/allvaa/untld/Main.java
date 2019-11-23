@@ -9,7 +9,7 @@ import javax.security.auth.login.LoginException;
 public class Main {
     public static void main(String[] args) throws LoginException {
         JDA client = new JDABuilder(AccountType.BOT)
-                .setToken("")
+                .setToken(Config.token)
                 .build();
     }
 }
