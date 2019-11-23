@@ -9,13 +9,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import org.reflections.Reflections;
 
 public class CommandHandler {
-    private JDA client;
-
     public CommandHandler(JDA client) {
-        this.client = client;
-    }
-
-    public void load() {
         CommandClientBuilder cmdClient = new CommandClientBuilder()
                 .setOwnerId(Config.ownerID)
                 .setPrefix(Config.prefix)
@@ -30,6 +24,6 @@ public class CommandHandler {
                         e.printStackTrace();
                     }
                 });
-        this.client.addEventListener(cmdClient.build());
+        client.addEventListener(cmdClient.build());
     }
 }
