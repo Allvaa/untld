@@ -1,5 +1,6 @@
 package com.allvaa.untld;
 
+import com.allvaa.untld.handler.CommandHandler;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -11,5 +12,6 @@ public class Main {
         JDA client = new JDABuilder(AccountType.BOT)
                 .setToken(Config.token)
                 .build();
+        new CommandHandler(client).load();
     }
 }
