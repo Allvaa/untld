@@ -15,7 +15,7 @@ public class Main {
         JDA client = new JDABuilder(AccountType.BOT)
                 .setToken(Config.TOKEN)
                 .build();
+        new ListenerHandler(client, untld);
         new CommandHandler(client, untld);
-        new ListenerHandler(client);
     }
 }
