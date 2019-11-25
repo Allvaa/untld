@@ -9,12 +9,15 @@ public class Config {
     public String getOwnerID() {
         return ownerID;
     }
+
     public String[] getCoOwnersID() {
         return coOwnersID;
     }
+
     public String getToken() {
         return TOKEN;
     }
+
     public String getPrefix() {
         return PREFIX;
     }

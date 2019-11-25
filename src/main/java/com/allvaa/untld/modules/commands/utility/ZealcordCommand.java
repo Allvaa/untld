@@ -1,7 +1,7 @@
-package com.allvaa.untld.commands;
+package com.allvaa.untld.modules.commands.utility;
 
 import com.allvaa.untld.Untld;
-import com.jagrosh.jdautilities.command.Command;
+import com.allvaa.untld.modules.categories.UtilityCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.utils.FinderUtil;
 import kong.unirest.HttpResponse;
@@ -13,11 +13,9 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 
-public class ZealcordCommand extends Command {
-    private final Untld untld;
-
+public class ZealcordCommand extends UtilityCategory {
     public ZealcordCommand(Untld untld) {
-        this.untld = untld;
+        super(untld);
         this.name = "zealcord";
         this.aliases = new String[]{"zc"};
         this.help = "get bot info from zealcord api";
@@ -28,7 +26,7 @@ public class ZealcordCommand extends Command {
     protected void execute(CommandEvent event) {
         try {
             String user;
-            if (event.getArgs().length() != 0) {
+            if (!event.getArgs().isEmpty()) {
                 user = FinderUtil.findUsers(event.getArgs(), event.getJDA()).get(0).getId();
             } else {
                 user = event.getSelfUser().getId();

@@ -1,16 +1,13 @@
-package com.allvaa.untld.commands;
+package com.allvaa.untld.modules.commands.utility;
 
 import com.allvaa.untld.Untld;
-import com.jagrosh.jdautilities.command.Command;
+import com.allvaa.untld.modules.categories.UtilityCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import kong.unirest.json.JSONObject;
-import net.dv8tion.jda.api.exceptions.InsufficientPermissionException;
 
-public class AFKCommand extends Command {
-    private final Untld untld;
-
+public class AFKCommand extends UtilityCategory {
     public AFKCommand(Untld untld) {
-        this.untld = untld;
+        super(untld);
         this.name = "afk";
         this.aliases = new String[]{"awayfromkeyboard"};
         this.help = "nothing.";
@@ -20,7 +17,7 @@ public class AFKCommand extends Command {
     protected void execute(CommandEvent event) {
         String reason;
         Number now = System.currentTimeMillis();
-        if (event.getArgs().length() == 0) {
+        if (event.getArgs().isEmpty()) {
             reason = "Not set.";
         } else {
             reason = event.getArgs();

@@ -1,26 +1,23 @@
-package com.allvaa.untld.commands;
+package com.allvaa.untld.modules.commands.owner;
 
 import com.allvaa.untld.Untld;
-import com.jagrosh.jdautilities.command.Command;
+import com.allvaa.untld.modules.categories.OwnerCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-public class EvalCommand extends Command {
-    private final Untld untld;
-
+public class EvalCommand extends OwnerCategory {
     public EvalCommand(Untld untld) {
-        this.untld = untld;
+        super(untld);
         this.name = "eval";
         this.aliases = new String[]{"evaluate", "ev", "e"};
         this.help = "evaluating";
-        this.ownerCommand = true;
     }
 
     @Override
     protected void execute(CommandEvent event) {
-        if (event.getArgs().length() == 0) {
+        if (event.getArgs().isEmpty()) {
             event.reply("what do you want?");
             return;
         }
@@ -28,6 +25,7 @@ public class EvalCommand extends Command {
             ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
             engine.put("event", event);
             engine.put("client", event.getJDA());
+            engine.put("cmdClient", this.commandClient);
             engine.put("untld", this.untld);
             engine.put("command", this);
             engine.put("message", event.getMessage());

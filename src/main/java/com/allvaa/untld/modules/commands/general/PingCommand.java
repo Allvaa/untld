@@ -1,14 +1,12 @@
-package com.allvaa.untld.commands;
+package com.allvaa.untld.modules.commands.general;
 
 import com.allvaa.untld.Untld;
-import com.jagrosh.jdautilities.command.Command;
+import com.allvaa.untld.modules.categories.GeneralCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class PingCommand extends Command {
-    private final Untld untld;
-
+public class PingCommand extends GeneralCategory {
     public PingCommand(Untld untld) {
-        this.untld = untld;
+        super(untld);
         this.name = "ping";
         this.aliases = new String[]{"p"};
         this.help = "the bot latency";

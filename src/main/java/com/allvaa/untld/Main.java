@@ -10,10 +10,10 @@ import javax.security.auth.login.LoginException;
 
 
 public class Main {
-    private static final Untld untld = new Untld(new Config());
     public static void main(String[] args) throws LoginException {
+        Untld untld = new Untld(new Config());
         JDA client = new JDABuilder(AccountType.BOT)
-                .setToken(Config.TOKEN)
+                .setToken(untld.getConfig().getToken())
                 .build();
         new ListenerHandler(client, untld);
         new CommandHandler(client, untld);
