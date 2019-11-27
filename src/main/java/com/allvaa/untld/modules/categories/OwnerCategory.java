@@ -16,7 +16,7 @@ public class OwnerCategory extends Command {
     public OwnerCategory(Untld untld) {
         this.commandClient = cmdClient;
         this.untld = untld;
-        this.category = new Category("general");
+        this.category = new Category("owner");
         this.hidden = true;
         this.ownerCommand = true;
 
