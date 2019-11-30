@@ -21,3 +21,16 @@ dependencies {
     compile "org.reflections:reflections:0.9.11"
     compile "com.konghq:unirest-java:3.1.04"
 }
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "com.allvaa.untld.Main"
+    }
+    from {
+        configurations
+                .compile
+                .findAll { !it.name.endsWith('pom') }
+                .collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
