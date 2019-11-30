@@ -14,9 +14,9 @@ public class UtilityCategory extends Command {
     public final CommandClient commandClient;
 
     public UtilityCategory(Untld untld) {
-        this.commandClient = cmdClient;
+        this.commandClient = cmdClient.build();
         this.untld = untld;
-        this.category = new Category("utility");
+        this.category = new Category("Utility");
 
         new Reflections("com.allvaa.untld.modules.commands")
                 .getSubTypesOf(this.getClass())

@@ -14,9 +14,9 @@ public class GeneralCategory extends Command {
     public final CommandClient commandClient;
 
     public GeneralCategory(Untld untld) {
-        this.commandClient = cmdClient;
+        this.commandClient = cmdClient.build();
         this.untld = untld;
-        this.category = new Category("general");
+        this.category = new Category("General");
 
         new Reflections("com.allvaa.untld.modules.commands")
                 .getSubTypesOf(this.getClass())

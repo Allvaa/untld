@@ -13,7 +13,7 @@ import org.reflections.Reflections;
 import java.lang.reflect.InvocationTargetException;
 
 public class CommandHandler {
-    public static CommandClient cmdClient;
+    public static CommandClientBuilder cmdClient;
     public static EventWaiter waiter;
 
     public CommandHandler(JDA client, Untld untld) {
@@ -24,8 +24,7 @@ public class CommandHandler {
                 .setCoOwnerIds(untld.getConfig().getCoOwnersID())
                 .setPrefix(untld.getConfig().getPrefix())
                 .setStatus(OnlineStatus.DO_NOT_DISTURB)
-                .setActivity(Activity.playing("In Development!"))
-                .build();
+                .setActivity(Activity.playing("In Development!"));
 
         new Reflections("com.allvaa.untld.modules.categories")
                 .getSubTypesOf(Command.class)
@@ -37,6 +36,6 @@ public class CommandHandler {
                     }
                 });
         client.addEventListener(waiter);
-        client.addEventListener(cmdClient);
+        client.addEventListener(cmdClient.build());
     }
 }

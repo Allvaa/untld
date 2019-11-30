@@ -14,9 +14,9 @@ public class FunCategory extends Command {
     public final CommandClient commandClient;
 
     public FunCategory(Untld untld) {
-        this.commandClient = cmdClient;
+        this.commandClient = cmdClient.build();
         this.untld = untld;
-        this.category = new Category("fun");
+        this.category = new Category("Fun");
 
         new Reflections("com.allvaa.untld.modules.commands")
                 .getSubTypesOf(this.getClass())
