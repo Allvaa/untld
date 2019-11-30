@@ -16,10 +16,10 @@ repositories {
 
 dependencies {
     testCompile group: "junit", name: "junit", version: "4.12"
-    compile "net.dv8tion:JDA:4.0.0_64"
+    compile "net.dv8tion:JDA:4.0.0_66"
     compile "com.jagrosh:jda-utilities:3.0.2"
     compile "org.reflections:reflections:0.9.11"
-    compile "com.konghq:unirest-java:3.1.04"
+    compile "com.konghq:unirest-java:3.2.00"
 }
 
 task fatJar(type: Jar) {
