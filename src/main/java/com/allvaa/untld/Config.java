@@ -3,7 +3,7 @@ package com.allvaa.untld;
 public class Config {
     public static String ownerID = "369507341973979136";
     public static String[] coOwnersID = {};
-    public static String TOKEN = "NTI4NDQ2MTY0OTg3ODA1Njk2.Xdqh2A.sWfzQQsXG-swbmGlDiQxYBRkQIw";
+    public static String TOKEN = "here is the token";
     public static String PREFIX = "untld ";
 
     public String getOwnerID() {
