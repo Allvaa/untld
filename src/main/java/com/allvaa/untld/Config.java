@@ -5,6 +5,7 @@ public class Config {
     public static String[] coOwnersID = {};
     public static String TOKEN = "here is the token";
     public static String PREFIX = "untld ";
+    public static String YouTubeAPI = "insert yt api key here";
 
     public String getOwnerID() {
         return ownerID;
@@ -20,5 +21,9 @@ public class Config {
 
     public String getPrefix() {
         return PREFIX;
+    }
+
+    public String getYouTubeAPI() {
+        return YouTubeAPI;
     }
 }
