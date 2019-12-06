@@ -11,6 +11,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class QueueConstruct {
     private final TextChannel textChannel;
     private final VoiceChannel voiceChannel;
+    private boolean loop;
+    private boolean playing;
     private AudioPlayer player;
     private AudioHandler handler;
     private final LinkedBlockingQueue<AudioTrack> songs;
@@ -20,7 +22,9 @@ public class QueueConstruct {
         this.textChannel = message.getTextChannel();
         this.voiceChannel = message.getMember().getVoiceState().getChannel();
         this.songs = new LinkedBlockingQueue<>();
+        this.playing = true;
         this.volume = 100;
+        this.loop = false;
     }
 
     public TextChannel getTextChannel() {
@@ -51,11 +55,28 @@ public class QueueConstruct {
         return songs;
     }
 
+    public boolean setPlaying(boolean playing) {
+        return this.playing = playing;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
     public int setVolume(int volume) {
+        player.setVolume(volume);
         return this.volume = volume;
     }
 
     public int getVolume() {
         return volume;
+    }
+
+    public boolean setLoop(boolean loop) {
+        return this.loop = loop;
+    }
+
+    public boolean isLoop() {
+        return loop;
     }
 }

@@ -13,7 +13,7 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
 import java.nio.ByteBuffer;
 import java.util.*;
 
-public class AudioHandler extends AudioEventAdapter implements AudioSendHandler {
+public class AudioHandler implements AudioSendHandler {
 
     private final Untld untld;
     private final Guild guild;
@@ -26,37 +26,12 @@ public class AudioHandler extends AudioEventAdapter implements AudioSendHandler 
         this.player = player;
     }
 
-    public void queue(AudioTrack track) {
+    public void play(AudioTrack track) {
         QueueConstruct queue = untld.getGuildQueue(guild);
         queue.getSongs().add(track);
 
         if (player.getPlayingTrack() == null) {
             player.playTrack(track);
-        }
-    }
-
-    @Override
-    public void onTrackStart(AudioPlayer player, AudioTrack track) {
-        QueueConstruct queue = untld.getGuildQueue(guild);
-        VoiceChannel vChan = queue.getVoiceChannel();
-        queue.getTextChannel().sendMessage("Now playing: **" + track.getInfo().title + "**.").queue();
-        if (vChan == null) { // User has left all voice channels
-            player.stopTrack();
-        } else {
-            queue.getTextChannel().getGuild().getAudioManager().openAudioConnection(vChan);
-        }
-    }
-
-    @Override
-    public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
-        QueueConstruct queue = untld.getGuildQueue(guild);
-        Guild g = queue.getTextChannel().getGuild();
-        queue.getSongs().remove();
-        if (queue.getSongs().isEmpty()) {
-            untld.removeGuildQueue(g);
-            queue.getTextChannel().sendMessage("Queue is empty!").queue();
-        } else {
-            player.playTrack(queue.getSongs().element());
         }
     }
 
