@@ -14,7 +14,6 @@ import java.nio.ByteBuffer;
 import java.util.*;
 
 public class AudioHandler implements AudioSendHandler {
-
     private final Untld untld;
     private final Guild guild;
     private final AudioPlayer player;

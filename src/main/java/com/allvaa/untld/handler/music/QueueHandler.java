@@ -12,11 +12,12 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
 
 public class QueueHandler extends AudioEventAdapter {
     private final Untld untld;
-    private QueueConstruct queue;
+    private final Guild guild;
 
     public QueueHandler(Untld untld, Message message, AudioTrack track) {
         this.untld = untld;
-        this.queue = untld.getGuildQueue(message.getGuild());
+        this.guild = message.getGuild();
+        QueueConstruct queue = untld.getGuildQueue(message.getGuild());
 
         if (queue == null) {
             queue = new QueueConstruct(message);
@@ -35,6 +36,8 @@ public class QueueHandler extends AudioEventAdapter {
 
     @Override
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
+        QueueConstruct queue = untld.getGuildQueue(guild);
+        if (queue == null) return;
         VoiceChannel vChan = queue.getVoiceChannel();
         queue.getTextChannel().sendMessage("Now playing: **" + track.getInfo().title + "**.").queue();
         if (vChan == null) { // User has left all voice channels
@@ -46,6 +49,8 @@ public class QueueHandler extends AudioEventAdapter {
 
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
+        QueueConstruct queue = untld.getGuildQueue(guild);
+        if (queue == null) return;
         Guild g = queue.getTextChannel().getGuild();
         AudioTrack prevTrack = queue.getSongs().remove();
         if (queue.isLoop()) {
