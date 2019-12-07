@@ -79,4 +79,18 @@ public class QueueConstruct {
     public boolean isLoop() {
         return loop;
     }
+
+    public boolean setPaused(boolean pause) {
+        if (pause) {
+            player.setPaused(true);
+        } else {
+            player.setPaused(false);
+        }
+        this.playing = !pause;
+        return pause;
+    }
+
+    public boolean isPaused() {
+        return !playing;
+    }
 }
