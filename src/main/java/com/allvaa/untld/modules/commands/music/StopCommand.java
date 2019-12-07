@@ -5,12 +5,12 @@ import com.allvaa.untld.handler.music.QueueConstruct;
 import com.allvaa.untld.modules.categories.MusicCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class SkipCommand extends MusicCategory {
-    public SkipCommand(Untld untld) {
+public class StopCommand extends MusicCategory {
+    public StopCommand(Untld untld) {
         super(untld);
-        this.name = "skip";
-        this.aliases = new String[]{"sk"};
-        this.help = "skip current track";
+        this.name = "stop";
+        this.aliases = new String[]{"leave", "dc"};
+        this.help = "destroys queue";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SkipCommand extends MusicCategory {
             return;
         }
 
-        queue.getPlayer().stopTrack();
-        event.reply("track skipped.");
+        untld.removeGuildQueue(event.getGuild());
+        event.reply("stopped");
     }
 }

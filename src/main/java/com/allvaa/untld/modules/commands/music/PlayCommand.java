@@ -2,6 +2,7 @@ package com.allvaa.untld.modules.commands.music;
 
 import com.allvaa.untld.Untld;
 import com.allvaa.untld.Utility;
+import com.allvaa.untld.handler.music.QueueConstruct;
 import com.allvaa.untld.handler.music.QueueHandler;
 import com.allvaa.untld.modules.categories.MusicCategory;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -24,7 +25,12 @@ public class PlayCommand extends MusicCategory {
 
     @Override
     protected void execute(CommandEvent event) {
-        if(event.getArgs().isEmpty()) {
+        QueueConstruct queue = untld.getGuildQueue(event.getGuild());
+        if (queue != null && !queue.getVoiceChannel().equals(event.getMember().getVoiceState().getChannel())) {
+            event.reply("you're the on wrong channel");
+            return;
+        }
+        if (event.getArgs().isEmpty()) {
             event.reply("please give me the title");
             return;
         }
