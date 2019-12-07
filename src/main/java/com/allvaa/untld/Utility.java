@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.List;
 
 public class Utility {
-    @Nullable
     public static String searchYt(String input) {
         try {
             new URL(input);

@@ -25,8 +25,8 @@ public class EvalCommand extends OwnerCategory {
             ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
             engine.put("event", event);
             engine.put("client", event.getJDA());
-            engine.put("cmdClient", this.commandClient);
-            engine.put("untld", this.untld);
+            engine.put("cmdClient", commandClient);
+            engine.put("untld", untld);
             engine.put("command", this);
             engine.put("message", event.getMessage());
             Object evaled = engine.eval(event.getArgs());

@@ -1,21 +1,18 @@
 package com.allvaa.untld.modules.categories;
 
 import com.allvaa.untld.Untld;
-import static com.allvaa.untld.handler.CommandHandler.cmdClient;
-import com.jagrosh.jdautilities.command.Command;
-import com.jagrosh.jdautilities.command.CommandClient;
+
+import com.allvaa.untld.handler.Category;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class OwnerCategory extends Command {
-    public final Untld untld;
-    public final CommandClient commandClient;
+import static com.allvaa.untld.handler.CommandHandler.cmdClient;
 
+public class OwnerCategory extends Category {
     public OwnerCategory(Untld untld) {
-        this.commandClient = cmdClient.build();
-        this.untld = untld;
+        super(untld);
         this.category = new Category("Owner");
         this.hidden = true;
         this.ownerCommand = true;
@@ -24,7 +21,9 @@ public class OwnerCategory extends Command {
                 .getSubTypesOf(this.getClass())
                 .forEach(c -> {
                     try {
-                        cmdClient.addCommand(c.getConstructor(untld.getClass()).newInstance(untld));
+                        OwnerCategory cmd = c.getConstructor(untld.getClass()).newInstance(untld);
+                        commands.add(cmd);
+                        cmdClient.addCommand(cmd);
                     } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
