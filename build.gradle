@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile "net.dv8tion:JDA:4.1.0_95"
+    compile "net.dv8tion:JDA:4.1.1_124"
     compile "com.jagrosh:jda-utilities:3.0.2"
     compile "org.reflections:reflections:0.9.12"
     compile "com.konghq:unirest-java:3.3.00"
